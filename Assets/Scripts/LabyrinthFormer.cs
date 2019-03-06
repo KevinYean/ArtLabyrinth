@@ -17,6 +17,9 @@ public class LabyrinthFormer : MonoBehaviour
     public GameObject uBase;
     public GameObject hallBase;
     public GameObject cornerBase;
+    public GameObject finishLine;
+    public CameraControl camera;
+    public PlayerControl player;
 
     public LabyrinthGenerator labyrinth;
 
@@ -47,12 +50,15 @@ public class LabyrinthFormer : MonoBehaviour
                 //Rotate correct order
                 if (path[i + 1].zCoord > path[i].zCoord) { //Up
                     labyrinthBase.transform.RotateAround(transform.position, transform.up, 180);
+                    camera.yaw = 0f; player.yaw = 0f;
+
                 }
                 else if (path[i + 1].zCoord < path[i].zCoord) { //Down
                     labyrinthBase.transform.RotateAround(transform.position, transform.up, 0);
                 }
                 else if (path[i + 1].xCoord > path[i].xCoord) { //Right
                     labyrinthBase.transform.RotateAround(transform.position, transform.up, 270);
+                    camera.yaw = 90f; player.yaw = 90f;
                 }
                 else if (path[i + 1].xCoord < path[i].xCoord) { //Left
                     labyrinthBase.transform.RotateAround(transform.position, transform.up, 90);
@@ -61,6 +67,8 @@ public class LabyrinthFormer : MonoBehaviour
             }
             else if (i == path.Count - 1) { //Last Piece
                 labyrinthBase = GameObject.Instantiate(uBase, transform);
+                GameObject end = GameObject.Instantiate(finishLine, transform);
+                end.transform.position = new Vector3((path[i].xCoord) * 8f, 0f + end.transform.position.y, (path[i].zCoord) * 8f);
                 if (path[i - 1].zCoord > path[i].zCoord) { //Up
                     labyrinthBase.transform.RotateAround(transform.position, transform.up, 180);
                 }

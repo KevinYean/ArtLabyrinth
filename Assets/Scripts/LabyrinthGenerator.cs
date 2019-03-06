@@ -7,8 +7,8 @@ public class LabyrinthGenerator : MonoBehaviour
 
     //2D Array which will holds the [3][3]. Make it public so it can be flexible later on, 0 for blank, 1 for currenth path, 1 for start, 2 for end
     int[,] labyrinthBoard;
-    int rowSize = 4;
-    int colSize = 4;
+    int rowSize = 5;
+    int colSize = 1;
     int effiency = 0;
     List<string> labyrinthPath = new List<string>();
     public List<Coordinates> labyrinthCoordinates = new List<Coordinates>();
@@ -29,11 +29,11 @@ public class LabyrinthGenerator : MonoBehaviour
         int endRow, endCol;
 
         //1. Set starting point from the array. [0,0] //Set starting point as 1.
-        currentRow = 0; currentCol = 0;
+        currentRow = 4; currentCol = 0;
         Coordinates coord = new Coordinates(currentRow, currentCol);
         labyrinthCoordinates.Add(coord);
         //2. Set end point from the array. [2,2]
-        endRow = 3; endCol = 3;
+        endRow = 0; endCol = 0;
         SetLabyrinthPath(endRow, endCol, -1,labyrinthBoard);
         //3. While the current path is not the endpath.
         int pathNumber = 0;

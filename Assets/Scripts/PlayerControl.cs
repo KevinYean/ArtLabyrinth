@@ -12,7 +12,7 @@ public class PlayerControl : MonoBehaviour {
 
 
     public float speedH = 2.0f;
-    private float yaw = 0f;
+    public float yaw = 0f;
 
     private float moveSpeed = 3.5f;
 
@@ -56,5 +56,9 @@ public class PlayerControl : MonoBehaviour {
     bool IsGrounded(){
         //Debug.Log(Physics.Raycast(transform.position, -transform.up, 1.5f));
         return Physics.Raycast(transform.position, -transform.up, 1.5f);
+    }
+
+    void OnTriggerEnter() {
+        Debug.Log("You Win!");
     }
 }
